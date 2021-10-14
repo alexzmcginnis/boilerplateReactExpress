@@ -5,7 +5,7 @@ const App = () => {
 
     return (
       <div>
-        <h2>I am a react element!</h2>
+        <h1>Live Chat</h1>
         <Chat />
       </div>
     )
