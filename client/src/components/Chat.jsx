@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import io from 'socket.io-client';
 import styled from 'styled-components';
 
 const StyledChat = styled.div`
@@ -8,20 +7,15 @@ const StyledChat = styled.div`
     padding: 5px;
     margin: 5px;
     width: 300px;
-
   }
 `;
 
-const socket = io.connect('http://localhost:1337')
-
 
 const Chat = () => {
-  
   const [username, setUsername] = useState('')
   const [currentMessage, setCurrentMessage] = useState('');
   const [allMessages, setAllMessages] = useState([])
   const [nameSet, setNameSet] = useState(false)
-
 
   //fn to set the current msg
   const changeMessageText = (e) => {
@@ -33,18 +27,16 @@ const Chat = () => {
   }
 
   const sendMessage = () => {
+    //format of message to be sent
     const messageData = {username: username, message: currentMessage}
-    socket.emit('message', messageData )
+    //setting the state so the username is set for the chat, and so the message input clears after send
     setNameSet(true)
     setCurrentMessage('')
-    setAllMessages((list) => [...list, messageData])
+    //TODO: need to send the message
+   
   }
 
-  useEffect(() => {
-    socket.on('receivedMessage', (data) => {
-      setAllMessages((list) => [...list, data]);
-    });
-  }, [socket]);
+
 
   return (
     <StyledChat> 
