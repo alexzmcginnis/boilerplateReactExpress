@@ -8,7 +8,6 @@ const frontEnd = path.resolve(__dirname, '..', 'client', 'dist')
 //create the server
 const server = http.createServer(app);
 
-//TODO: set up sockets
 
 
 
